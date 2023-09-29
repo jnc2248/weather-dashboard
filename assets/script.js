@@ -1,7 +1,7 @@
-var searchBar = document.querySelector("#searchBar");
-var searchHist = document.querySelector("#searchHistory");
+var searchBarEl = document.querySelector("#searchBar");
+var searchHistoryEl = document.querySelector("#searchHistory");
 
-searchBar.addEventListener("submit", function(event) {
+searchBarEl.addEventListener("submit", function(event) {
     event.preventDefault();
 
     var citySearch = event.target.citySearch.value;
@@ -15,10 +15,7 @@ searchBar.addEventListener("submit", function(event) {
     saveSearch(citySearch)
 });
 
-// Need event listener for recent search history buttons
-// On click, run getCoordinates with search history value instead of citySearch
-
-searchHist.addEventListener("click", function(event){
+searchHistoryEl.addEventListener("click", function(event){
     var test = event.target;
 
     if (test.matches(".searchBtn")) {
@@ -34,25 +31,10 @@ searchHist.addEventListener("click", function(event){
 
         var searchHistory = [];
         localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-        
+
         document.getElementById("searchHistory").innerHTML = "";
     };
 });
-
-// document.querySelectorAll('button').forEach(button => {
-//     button.addEventListener('click', () => {
-//         var testBtn = button.value;
-
-//         console.log("Clicked");
-//         console.log(testBtn);
-
-        // document.getElementById("currentInfo").innerHTML = "";
-        // document.getElementById("moreInfo").innerHTML = "";
-        // document.getElementById("fiveDay").innerHTML = "";
-
-        // getCoordinates(historyCity);
-//     });
-// });
 
 function init() {
     displayHistory();
