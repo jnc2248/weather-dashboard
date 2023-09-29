@@ -8,7 +8,7 @@ searchBar.addEventListener("submit", function(event) {
     document.getElementById("currentInfo").innerHTML = "";
     document.getElementById("moreInfo").innerHTML = "";
     document.getElementById("fiveDay").innerHTML = "";
-    // document.getElementById("searchBar").innerHTML = "";
+    document.getElementById("searchHistory").innerHTML = "";
 
     getCoordinates(citySearch);
     saveSearch(citySearch)
@@ -35,7 +35,7 @@ function displayHistory() {
 
         searchBtn.innerHTML = searchHistory[i];
 
-        $("#searchBar").append(searchBtn);
+        $("#searchHistory").append(searchBtn);
     };
 };
 
