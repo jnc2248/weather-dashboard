@@ -29,6 +29,13 @@ searchHist.addEventListener("click", function(event){
         document.getElementById("fiveDay").innerHTML = "";
 
         getCoordinates(test.value);
+
+    } else if (test.matches("#clearBtn")) {
+
+        var searchHistory = [];
+        localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+        
+        document.getElementById("searchHistory").innerHTML = "";
     };
 });
 
@@ -78,6 +85,12 @@ function displayHistory() {
 
         $("#searchHistory").append(searchBtn);
     };
+
+    var clearBtn = document.createElement("button");
+    clearBtn.innerHTML = "Clear";
+    clearBtn.setAttribute("id", "clearBtn");
+    $("#searchHistory").append(clearBtn);
+
 };
 
 function getCoordinates(city) {
