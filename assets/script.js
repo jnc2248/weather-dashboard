@@ -32,8 +32,12 @@ function searchCity(latitude, longitude) {
         console.log(data);
 
         var name = data.name;
-        console.log(name);
-        document.getElementById("currentInfo").append(name);
+        var space = document.createElement("br")
+        var format = dayjs().format('MMM D, YYYY h:mm a');
+        console.log(format);
+        $("#currentInfo").append(name, space);
+        $("#currentInfo").append(format);
+        $("#currentInfo").append('<img src="" id="icon" alt="Weather Icon">');
 
         var iconURL = 'https://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png'
         document.getElementById("icon").setAttribute("src", iconURL);
