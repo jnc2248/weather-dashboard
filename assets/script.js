@@ -8,9 +8,36 @@ searchBar.addEventListener("submit", function(event) {
     document.getElementById("currentInfo").innerHTML = "";
     document.getElementById("moreInfo").innerHTML = "";
     document.getElementById("fiveDay").innerHTML = "";
+    // document.getElementById("searchBar").innerHTML = "";
 
     getCoordinates(citySearch);
+    saveSearch(citySearch)
 });
+
+function saveSearch(citySearch) {
+
+    if (citySearch) {
+        var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+
+        searchHistory.push(citySearch);
+
+        localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+
+        displayHistory();
+    }
+};
+
+function displayHistory() {
+    var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+
+    for (i = 0; i < searchHistory.length; i++) {
+        var searchBtn = document.createElement("button");
+
+        searchBtn.innerHTML = searchHistory[i];
+
+        $("#searchBar").append(searchBtn);
+    };
+};
 
 function getCoordinates(city) {
     var URL = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=5&appid=885e7a2453d9981f57f30a861b8634ec'
@@ -32,9 +59,6 @@ function searchCity(latitude, longitude) {
     fetch(URL).then(function(data) {
         return data.json();
     }).then(function(data) {
-        
-        // $("#currentInfo").innerHTML = "";
-        // $("#moreInfo").innerHTML = "";
 
         var name = data.name;
         var description = data.weather[0].main;
@@ -79,8 +103,6 @@ function fiveDayForecast(latitude, longitude) {
     fetch(URL).then(function(data) {
         return data.json();
     }).then(function(data) {
-        
-        // $("#fiveDay").innerHTML = "";
 
         var today = dayjs();
 
