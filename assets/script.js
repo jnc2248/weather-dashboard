@@ -1,4 +1,5 @@
 var searchBar = document.querySelector("#searchBar");
+var searchHist = document.querySelector("#searchHistory");
 
 searchBar.addEventListener("submit", function(event) {
     event.preventDefault();
@@ -13,6 +14,42 @@ searchBar.addEventListener("submit", function(event) {
     getCoordinates(citySearch);
     saveSearch(citySearch)
 });
+
+// Need event listener for recent search history buttons
+// On click, run getCoordinates with search history value instead of citySearch
+
+searchHist.addEventListener("click", function(event){
+    var test = event.target;
+
+    if (test.matches(".searchBtn")) {
+        console.log(test.value);
+
+        document.getElementById("currentInfo").innerHTML = "";
+        document.getElementById("moreInfo").innerHTML = "";
+        document.getElementById("fiveDay").innerHTML = "";
+
+        getCoordinates(test.value);
+    };
+});
+
+// document.querySelectorAll('button').forEach(button => {
+//     button.addEventListener('click', () => {
+//         var testBtn = button.value;
+
+//         console.log("Clicked");
+//         console.log(testBtn);
+
+        // document.getElementById("currentInfo").innerHTML = "";
+        // document.getElementById("moreInfo").innerHTML = "";
+        // document.getElementById("fiveDay").innerHTML = "";
+
+        // getCoordinates(historyCity);
+//     });
+// });
+
+function init() {
+    displayHistory();
+}
 
 function saveSearch(citySearch) {
 
@@ -34,6 +71,10 @@ function displayHistory() {
         var searchBtn = document.createElement("button");
 
         searchBtn.innerHTML = searchHistory[i];
+
+        searchBtn.setAttribute("value", searchHistory[i]);
+
+        searchBtn.classList.add("searchBtn");
 
         $("#searchHistory").append(searchBtn);
     };
@@ -137,4 +178,6 @@ function fiveDayForecast(latitude, longitude) {
             $("#fiveDay").append(oneDay);
         };
     })
-}
+};
+
+init();
