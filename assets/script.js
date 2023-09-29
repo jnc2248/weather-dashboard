@@ -61,7 +61,7 @@ function searchCity(latitude, longitude) {
 
         $("#currentInfo").append(name, space);
         $("#currentInfo").append(format);
-        $("#currentInfo").append('<img src="" id="icon" alt="Weather Icon">', description);
+        $("#currentInfo").append('<img src="" id="icon" alt="Weather Icon">');
         $("#currentInfo").append(mainTemp);
         $("#moreInfo").append(feelsText, tempMaxMinText, windText, humidityText);
 
@@ -107,7 +107,7 @@ function fiveDayForecast(latitude, longitude) {
 
             var oneDay = document.createElement("div");
 
-            oneDay.append(dateText, iconText, descriptionText, tempText, windText, humidityText, space);
+            oneDay.append(dateText, iconText, tempText, windText, humidityText, space);
 
             $("#fiveDay").append(oneDay);
         };

@@ -22,24 +22,22 @@
         <h1>Weather Dashboard</h1>
     </header>
     <!-- Search Input Form -->
-    <div class="d-flex flex-row">
+    <div class="d-flex flex-row justify-content-between">
         <form id="searchBar" class="col-lg-4">
-            <p>Search City:</p>
+            <p class="bold">Search City:</p>
             <input type="text" id="citySearch" name="citySearch" placeholder="Los Angeles">
             <input type="submit" id="searchBtn" value="Search">
         </form>
         <div class="d-flex flex-column col-lg-8">
             <!-- City Weather Info -->
             <div>
-                <p>City Weather Info</p>
+                <h2>City Weather Info</h2>
                 <p id="currentInfo"></p>
                 <p id="moreInfo"></p>
             </div>
             <!-- 5 Day Forecast -->
             <div>
-                <p id="fiveDay">5 Day Forecast</p>
-                <br/>
-                <br>
+                <h3 id="fiveDay">5 Day Forecast</h3>
             </div>
         </div>
     </div>
