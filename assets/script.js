@@ -81,7 +81,6 @@ function getCoordinates(city) {
     fetch(URL).then(function(data) {
         return data.json();
     }).then(function(data) {
-        console.log(data, data[0].lat, data[0].lon);
         var latitude = data[0].lat;
         var longitude = data[0].lon;
         searchCity(latitude, longitude);
@@ -113,7 +112,6 @@ function searchCity(latitude, longitude) {
         var space = document.createElement("br");
         var line = document.createElement("hr");
 
-        // Display lines between each
         mainTemp.innerHTML = Math.trunc((temp - 273.15) * (9/5) + 32) + "°F  /  " + description;
         feelsText.innerHTML = "Feels like " + Math.trunc((feels - 273.15) * (9/5) + 32) + "°F";
         tempMaxMinText.innerHTML = "Max " + Math.trunc((tempMax - 273.15) * (9/5) + 32) + "°F / Min " + Math.trunc((tempMin - 273.15) * (9/5) + 32) + "°F";
@@ -140,11 +138,10 @@ function fiveDayForecast(latitude, longitude) {
         return data.json();
     }).then(function(data) {
 
-        var today = dayjs();
+        var displayLength = 37;
+        for (i = 4; i < displayLength; i+=8) {
 
-        var displayLength = 6
-        for (i = 1; i < displayLength; i++) {
-            var date = today.add(i, 'day');
+            var date = dayjs(data.list[i].dt_txt);
             var formatted = date.format('MMM D, YYYY');
             var temp = data.list[i].main.temp;
             var wind = data.list[i].wind.speed;
@@ -157,6 +154,7 @@ function fiveDayForecast(latitude, longitude) {
             var humidityText = document.createElement("div");
             var dateText = document.createElement("div");
             var space = document.createElement("br");
+            var day = document.createElement("div");
 
             var iconURL = 'https://openweathermap.org/img/wn/' + data.list[i].weather[0].icon + '@2x.png';
             iconText.setAttribute("src", iconURL);
@@ -166,11 +164,9 @@ function fiveDayForecast(latitude, longitude) {
             humidityText.innerHTML = "Humidity: " + humidity + "%";
             dateText.innerHTML = formatted;
 
-            var oneDay = document.createElement("div");
+            day.append(dateText, iconText, tempText, windText, humidityText, space);
 
-            oneDay.append(dateText, iconText, tempText, windText, humidityText, space);
-
-            $("#fiveDay").append(oneDay);
+            $("#fiveDay").append(day);
         };
     })
 };
