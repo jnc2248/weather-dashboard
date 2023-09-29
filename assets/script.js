@@ -32,14 +32,37 @@ function searchCity(latitude, longitude) {
         console.log(data);
 
         var name = data.name;
-        var space = document.createElement("br")
+        var description = data.weather[0].main;
+        var temp = data.main.temp;
+        var feels = data.main.feels_like;
+        var tempMax = data.main.temp_max;
+        var tempMin = data.main.temp_min;
+        var humidity = data.main.humidity;
+
+        var feelsText = document.createElement("div");
+        var tempMaxMinText = document.createElement("div");
+        var humidityText = document.createElement("div");
+        var mainTemp = document.createElement("div");
+        var space = document.createElement("br");
+        var line = document.createElement("hr");
+
+        // Display lines between each
+        mainTemp.innerHTML = Math.trunc((temp - 273.15) * (9/5) + 32) + "°F";
+        feelsText.innerHTML = "Feels like " + Math.trunc((feels - 273.15) * (9/5) + 32) + "°F";
+        tempMaxMinText.innerHTML = "Max " + Math.trunc((tempMax - 273.15) * (9/5) + 32) + "°F / Min " + Math.trunc((tempMin - 273.15) * (9/5) + 32) + "°F";
+        humidityText.innerHTML = "Humidity " + humidity + "%";
+
+        // Display time in searched city
         var format = dayjs().format('MMM D, YYYY h:mm a');
         console.log(format);
+
         $("#currentInfo").append(name, space);
         $("#currentInfo").append(format);
-        $("#currentInfo").append('<img src="" id="icon" alt="Weather Icon">');
+        $("#currentInfo").append('<img src="" id="icon" alt="Weather Icon">', description);
+        $("#currentInfo").append(mainTemp);
+        $("#moreInfo").append(feelsText, tempMaxMinText, humidityText);
 
-        var iconURL = 'https://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png'
+        var iconURL = 'https://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png';
         document.getElementById("icon").setAttribute("src", iconURL);
     })
 };
