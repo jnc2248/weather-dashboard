@@ -29,7 +29,9 @@ function searchCity(latitude, longitude) {
     fetch(URL).then(function(data) {
         return data.json();
     }).then(function(data) {
-        console.log(data);
+        
+        $("#currentInfo").innerHTML = "";
+        $("#moreInfo").innerHTML = "";
 
         var name = data.name;
         var description = data.weather[0].main;
@@ -49,7 +51,7 @@ function searchCity(latitude, longitude) {
         var line = document.createElement("hr");
 
         // Display lines between each
-        mainTemp.innerHTML = Math.trunc((temp - 273.15) * (9/5) + 32) + "°F";
+        mainTemp.innerHTML = Math.trunc((temp - 273.15) * (9/5) + 32) + "°F  /  " + description;
         feelsText.innerHTML = "Feels like " + Math.trunc((feels - 273.15) * (9/5) + 32) + "°F";
         tempMaxMinText.innerHTML = "Max " + Math.trunc((tempMax - 273.15) * (9/5) + 32) + "°F / Min " + Math.trunc((tempMin - 273.15) * (9/5) + 32) + "°F";
         windText.innerHTML = "Wind: " + wind + " mph";
@@ -74,12 +76,10 @@ function fiveDayForecast(latitude, longitude) {
     fetch(URL).then(function(data) {
         return data.json();
     }).then(function(data) {
-        console.log(data);
+        
+        $("#fiveDay").innerHTML = "";
 
         var today = dayjs();
-        // var tomorrow = today.add(1, 'day');
-        // var formatted = tomorrow.format('MMM D, YYYY');
-        // console.log(formatted);
 
         var displayLength = 6
         for (i = 1; i < displayLength; i++) {
@@ -88,21 +88,26 @@ function fiveDayForecast(latitude, longitude) {
             var temp = data.list[i].main.temp;
             var wind = data.list[i].wind.speed;
             var humidity = data.list[i].main.humidity;
+            var description = data.list[i].weather[0].main;
 
             var tempText = document.createElement("div");
+            var iconText = document.createElement("img");
             var windText = document.createElement("div");
             var humidityText = document.createElement("div");
             var dateText = document.createElement("div");
             var space = document.createElement("br");
 
-            tempText.innerHTML = Math.trunc((temp - 273.15) * (9/5) + 32) + "°F";
+            var iconURL = 'https://openweathermap.org/img/wn/' + data.list[i].weather[0].icon + '@2x.png';
+            iconText.setAttribute("src", iconURL);
+
+            tempText.innerHTML = Math.trunc((temp - 273.15) * (9/5) + 32) + "°F  /  " + description;
             windText.innerHTML = "Wind: " + wind + " mph";
             humidityText.innerHTML = "Humidity: " + humidity + "%";
             dateText.innerHTML = formatted;
 
             var oneDay = document.createElement("div");
 
-            oneDay.append(dateText, tempText, windText, humidityText, space, space);
+            oneDay.append(dateText, iconText, descriptionText, tempText, windText, humidityText, space);
 
             $("#fiveDay").append(oneDay);
         };
