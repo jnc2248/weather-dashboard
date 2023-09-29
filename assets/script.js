@@ -4,7 +4,10 @@ searchBar.addEventListener("submit", function(event) {
     event.preventDefault();
 
     var citySearch = event.target.citySearch.value;
-    console.log(citySearch, 'Success');
+
+    document.getElementById("currentInfo").innerHTML = "";
+    document.getElementById("moreInfo").innerHTML = "";
+    document.getElementById("fiveDay").innerHTML = "";
 
     getCoordinates(citySearch);
 });
@@ -30,8 +33,8 @@ function searchCity(latitude, longitude) {
         return data.json();
     }).then(function(data) {
         
-        $("#currentInfo").innerHTML = "";
-        $("#moreInfo").innerHTML = "";
+        // $("#currentInfo").innerHTML = "";
+        // $("#moreInfo").innerHTML = "";
 
         var name = data.name;
         var description = data.weather[0].main;
@@ -77,7 +80,7 @@ function fiveDayForecast(latitude, longitude) {
         return data.json();
     }).then(function(data) {
         
-        $("#fiveDay").innerHTML = "";
+        // $("#fiveDay").innerHTML = "";
 
         var today = dayjs();
 
