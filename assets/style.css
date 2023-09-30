@@ -41,7 +41,7 @@ body {
 }
 
 .todayInfo {
-    width: 400px;
+    width: 30%;
     height: 450px;
     padding: 40px;
     border-radius: 10px;
@@ -49,7 +49,7 @@ body {
 }
 
 .fiveDayInfo {
-    width: 1150px;
+    width: 90%;
     padding: 40px;
     border-radius: 10px;
     background-color: rgb(255, 255, 255, 0.35);
@@ -67,6 +67,28 @@ body {
     background-color: rgb(213, 213, 213);
 }
 
+.clearSection {
+    width: 100%;
+}
+
 .tempColor {
     color: #224377;
+}
+
+@media screen and (max-width: 992px) {
+    .todayInfo {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .todayInfo {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .todayInfo {
+        width: 65%;
+    }
 }

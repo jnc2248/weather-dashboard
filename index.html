@@ -25,8 +25,8 @@
         <h1><i class="fa-solid fa-globe fa-lg" style="color: #224377;"></i> Weather Dashboard</h1>
     </header>
     <!-- Search Input Form -->
-    <div class="d-flex flex-row">
-        <div class="d-flex flex-column col-lg-2 col-md-2 col-sm-4">
+    <div class="d-flex flex-wrap flex-row">
+        <div class="d-flex flex-column flex-wrap col-lg-2 col-md-2 col-sm-4">
             <form id="searchBar" class="d-flex flex-column m-4">
                 <p class="bold">Search City:</p>
                 <input type="text" id="citySearch" name="citySearch" placeholder="Los Angeles">
@@ -35,16 +35,16 @@
             <p class="bold mx-4">Search History:</p>
             <div id="searchHistory" class="d-flex flex-column mx-4"></div>
         </div>
-        <div id="weatherSection" class="d-flex flex-column col-lg-10 col-md-10 col-sm-12">
+        <div id="weatherSection" class="d-flex flex-column flex-wrap col-lg-10 col-md-12 col-sm-12">
             <!-- City Weather Info -->
-            <div class="m-2 todayInfo">
+            <div class="m-2 todayInfo col-md-12 col-sm-12">
                 <h2 id="cityName" class="bold marginBottom"></h2>
                 <div id="currentInfo"></div>
                 <div id="moreInfo"></div>
             </div>
             <!-- 5 Day Forecast -->
-            <div class="m-2 d-flex flex-column flex-wrap fiveDayInfo justify-content-center">
-                <h3 class="mx-4 bold">5 Day Forecast</h3>
+            <div class="m-2 d-flex flex-column flex-wrap fiveDayInfo">
+                <h3 class="d-flex mx-4 bold">5 Day Forecast</h3>
                 <div id="fiveDay" class="d-flex flex-row flex-wrap m-4"></div>
             </div>
         </div>

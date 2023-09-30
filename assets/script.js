@@ -6,14 +6,30 @@ searchBarEl.addEventListener("submit", function(event) {
 
     var citySearch = event.target.citySearch.value;
 
-    document.getElementById("currentInfo").innerHTML = "";
-    document.getElementById("moreInfo").innerHTML = "";
-    document.getElementById("fiveDay").innerHTML = "";
-    document.getElementById("searchHistory").innerHTML = "";
-    document.getElementById("cityName").innerHTML = "";
+    if (citySearch) {
+        document.getElementById("currentInfo").innerHTML = "";
+        document.getElementById("moreInfo").innerHTML = "";
+        document.getElementById("fiveDay").innerHTML = "";
+        document.getElementById("searchHistory").innerHTML = "";
+        document.getElementById("cityName").innerHTML = "";
 
-    getCoordinates(citySearch);
-    saveSearch(citySearch)
+        getCoordinates(citySearch);
+        saveSearch(citySearch)
+
+        event.target.citySearch.value = "";
+
+    } else {
+        return;
+    }
+
+    // document.getElementById("currentInfo").innerHTML = "";
+    // document.getElementById("moreInfo").innerHTML = "";
+    // document.getElementById("fiveDay").innerHTML = "";
+    // document.getElementById("searchHistory").innerHTML = "";
+    // document.getElementById("cityName").innerHTML = "";
+
+    // getCoordinates(citySearch);
+    // saveSearch(citySearch)
 });
 
 searchHistoryEl.addEventListener("click", function(event){
@@ -51,6 +67,7 @@ function saveSearch(citySearch) {
         localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 
         displayHistory();
+
     }
 };
 
@@ -69,12 +86,16 @@ function displayHistory() {
         $("#searchHistory").append(searchBtn);
     };
 
+    genClearBtn();
+
+};
+
+function genClearBtn() {
     var clearBtn = document.createElement("button");
     clearBtn.innerHTML = "Clear";
     clearBtn.setAttribute("id", "clearBtn");
     clearBtn.classList.add("clear");
     $("#searchHistory").append(clearBtn);
-
 };
 
 function getCoordinates(city) {
