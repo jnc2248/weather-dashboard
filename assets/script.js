@@ -78,7 +78,7 @@ function displayHistory() {
 };
 
 function getCoordinates(city) {
-    var URL = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=5&appid=885e7a2453d9981f57f30a861b8634ec'
+    var URL = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=5&appid=885e7a2453d9981f57f30a861b8634ec'
 
     fetch(URL).then(function(data) {
         return data.json();
