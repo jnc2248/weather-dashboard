@@ -10,6 +10,7 @@ searchBarEl.addEventListener("submit", function(event) {
     document.getElementById("moreInfo").innerHTML = "";
     document.getElementById("fiveDay").innerHTML = "";
     document.getElementById("searchHistory").innerHTML = "";
+    document.getElementById("cityName").innerHTML = "";
 
     getCoordinates(citySearch);
     saveSearch(citySearch)
@@ -19,11 +20,11 @@ searchHistoryEl.addEventListener("click", function(event){
     var test = event.target;
 
     if (test.matches(".searchBtn")) {
-        console.log(test.value);
 
         document.getElementById("currentInfo").innerHTML = "";
         document.getElementById("moreInfo").innerHTML = "";
         document.getElementById("fiveDay").innerHTML = "";
+        document.getElementById("cityName").innerHTML = "";
 
         getCoordinates(test.value);
 
@@ -31,13 +32,13 @@ searchHistoryEl.addEventListener("click", function(event){
 
         var searchHistory = [];
         localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-
         document.getElementById("searchHistory").innerHTML = "";
     };
 });
 
 function init() {
     displayHistory();
+    getCoordinates('Los Angeles');
 }
 
 function saveSearch(citySearch) {
@@ -71,6 +72,7 @@ function displayHistory() {
     var clearBtn = document.createElement("button");
     clearBtn.innerHTML = "Clear";
     clearBtn.setAttribute("id", "clearBtn");
+    clearBtn.classList.add("clear");
     $("#searchHistory").append(clearBtn);
 
 };
@@ -101,29 +103,33 @@ function searchCity(latitude, longitude) {
         var feels = data.main.feels_like;
         var tempMax = data.main.temp_max;
         var tempMin = data.main.temp_min;
-        var wind = data.wind.speed;
+        var wind = Math.round((data.wind.speed * 2.23694) * 10) / 10;
         var humidity = data.main.humidity;
+        var format = dayjs().format('MMM D, YYYY');
+
 
         var feelsText = document.createElement("div");
         var tempMaxMinText = document.createElement("div");
         var windText = document.createElement("div");
         var humidityText = document.createElement("div");
+        var dateText = document.createElement("div");
         var mainTemp = document.createElement("div");
         var space = document.createElement("br");
-        var line = document.createElement("hr");
 
+
+        mainTemp.classList.add("tempColor");
         mainTemp.innerHTML = Math.trunc((temp - 273.15) * (9/5) + 32) + "°F  /  " + description;
+        mainTemp.classList.add("bigger");
+        dateText.innerHTML = format;
         feelsText.innerHTML = "Feels like " + Math.trunc((feels - 273.15) * (9/5) + 32) + "°F";
-        tempMaxMinText.innerHTML = "Max " + Math.trunc((tempMax - 273.15) * (9/5) + 32) + "°F / Min " + Math.trunc((tempMin - 273.15) * (9/5) + 32) + "°F";
+        tempMaxMinText.innerHTML = "High " + Math.trunc((tempMax - 273.15) * (9/5) + 32) + "°F  /  Low " + Math.trunc((tempMin - 273.15) * (9/5) + 32) + "°F";
         windText.innerHTML = "Wind: " + wind + " mph";
         humidityText.innerHTML = "Humidity: " + humidity + "%";
 
-        var format = dayjs().format('MMM D, YYYY');
-
-        $("#currentInfo").append(name, space);
-        $("#currentInfo").append(format);
+        $("#cityName").append(name);
+        $("#currentInfo").append(dateText, space);
         $("#currentInfo").append('<img src="" id="icon" alt="Weather Icon">');
-        $("#currentInfo").append(mainTemp);
+        $("#currentInfo").append(mainTemp, space);
         $("#moreInfo").append(feelsText, tempMaxMinText, windText, humidityText);
 
         var iconURL = 'https://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png';
@@ -144,7 +150,7 @@ function fiveDayForecast(latitude, longitude) {
             var date = dayjs(data.list[i].dt_txt);
             var formatted = date.format('MMM D, YYYY');
             var temp = data.list[i].main.temp;
-            var wind = data.list[i].wind.speed;
+            var wind = Math.round((data.list[i].wind.speed * 2.23694) * 10) / 10;
             var humidity = data.list[i].main.humidity;
             var description = data.list[i].weather[0].main;
 
@@ -159,11 +165,13 @@ function fiveDayForecast(latitude, longitude) {
             var iconURL = 'https://openweathermap.org/img/wn/' + data.list[i].weather[0].icon + '@2x.png';
             iconText.setAttribute("src", iconURL);
 
+            tempText.classList.add("tempColor");
             tempText.innerHTML = Math.trunc((temp - 273.15) * (9/5) + 32) + "°F  /  " + description;
             windText.innerHTML = "Wind: " + wind + " mph";
             humidityText.innerHTML = "Humidity: " + humidity + "%";
             dateText.innerHTML = formatted;
 
+            day.classList.add("marginRight");
             day.append(dateText, iconText, tempText, windText, humidityText, space);
 
             $("#fiveDay").append(day);

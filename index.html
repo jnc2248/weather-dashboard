@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script
       src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
@@ -18,30 +21,36 @@
     <title>Document</title>
 </head>
 <body>
-    <header>
-        <h1>Weather Dashboard</h1>
+    <header class="marginLeft">
+        <h1><i class="fa-solid fa-globe fa-lg" style="color: #224377;"></i> Weather Dashboard</h1>
     </header>
     <!-- Search Input Form -->
-    <div class="">
-        <form id="searchBar" class="">
-            <p class="bold">Search City:</p>
-            <input type="text" id="citySearch" name="citySearch" placeholder="Los Angeles">
-            <input type="submit" id="searchBtn" value="Search">
-        </form>
-        <div id="searchHistory" class="d-flex flex-column"></div>
-        <div class="">
+    <div class="d-flex flex-row">
+        <div class="d-flex flex-column col-lg-2 col-md-2 col-sm-4">
+            <form id="searchBar" class="d-flex flex-column m-4">
+                <p class="bold">Search City:</p>
+                <input type="text" id="citySearch" name="citySearch" placeholder="Los Angeles">
+                <input type="submit" id="searchBtn" class="search" value="Search">
+            </form>
+            <div id="searchHistory" class="d-flex flex-column mx-4">
+                <p class="bold">Search History:</p>
+            </div>
+        </div>
+        <div id="weatherSection" class="d-flex flex-column col-lg-10 col-md-10 col-sm-12">
             <!-- City Weather Info -->
-            <div class="mb-4">
-                <h2>City Weather Info</h2>
+            <div class="m-2 todayInfo">
+                <h2 id="cityName" class="bold marginBottom"></h2>
                 <div id="currentInfo"></div>
                 <div id="moreInfo"></div>
             </div>
             <!-- 5 Day Forecast -->
-            <div id="fiveDay">
-                <h3 class="">5 Day Forecast</h3>
+            <div class="m-2 d-flex flex-column flex-wrap fiveDayInfo justify-content-center">
+                <h3 class="mx-4 bold">5 Day Forecast</h3>
+                <div id="fiveDay" class="d-flex flex-row flex-wrap m-4"></div>
             </div>
         </div>
     </div>
+    <script src="https://kit.fontawesome.com/589d810311.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="./assets/script.js"></script>

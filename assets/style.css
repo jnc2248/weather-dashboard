@@ -1,3 +1,73 @@
+* {
+    font-family: 'Young Serif', serif;
+}
+
+body {
+    background-color: rgb(209, 237, 253);
+}
+
 .bold {
     font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.bigger {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.marginRight {
+    padding-right: 30px;
+    margin-right: 40px;
+    border-right: 1px dashed rgb(65, 65, 65);
+}
+
+.marginTop {
+    margin-top: 35px;
+}
+
+.marginLeft {
+    margin-left: 70px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.marginBottom {
+    margin-bottom: 30px;
+}
+
+.todayInfo {
+    width: 400px;
+    height: 450px;
+    padding: 40px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+.fiveDayInfo {
+    width: 1150px;
+    padding: 40px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+.clear {
+    background-color: rgb(253, 175, 175);
+}
+
+.search {
+    background-color: rgb(213, 213, 213);
+}
+
+.searchBtn {
+    background-color: rgb(213, 213, 213);
+}
+
+.tempColor {
+    color: rgb(22, 166, 255);
 }
