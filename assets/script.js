@@ -21,15 +21,6 @@ searchBarEl.addEventListener("submit", function(event) {
     } else {
         return;
     }
-
-    // document.getElementById("currentInfo").innerHTML = "";
-    // document.getElementById("moreInfo").innerHTML = "";
-    // document.getElementById("fiveDay").innerHTML = "";
-    // document.getElementById("searchHistory").innerHTML = "";
-    // document.getElementById("cityName").innerHTML = "";
-
-    // getCoordinates(citySearch);
-    // saveSearch(citySearch)
 });
 
 searchHistoryEl.addEventListener("click", function(event){

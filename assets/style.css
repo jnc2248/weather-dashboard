@@ -41,7 +41,7 @@ body {
 }
 
 .todayInfo {
-    width: 30%;
+    width: 350px;
     height: 450px;
     padding: 40px;
     border-radius: 10px;
@@ -50,6 +50,7 @@ body {
 
 .fiveDayInfo {
     width: 90%;
+    margin: auto;
     padding: 40px;
     border-radius: 10px;
     background-color: rgb(255, 255, 255, 0.35);
@@ -75,6 +76,11 @@ body {
     color: #224377;
 }
 
+.center {
+    width: 100%;
+    margin: auto;
+}
+
 @media screen and (max-width: 992px) {
     .todayInfo {
         width: 40%;
@@ -90,5 +96,13 @@ body {
 @media screen and (max-width: 576px) {
     .todayInfo {
         width: 65%;
+    }
+
+    .fiveDayInfo {
+        width: 65%;
+    }
+
+    .marginRight {
+        border-right: none;
     }
 }
