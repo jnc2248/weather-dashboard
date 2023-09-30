@@ -4,6 +4,7 @@
 
 body {
     background-color: rgb(209, 237, 253);
+    background-image: linear-gradient(rgb(209, 237, 253), #224377);
 }
 
 .bold {
@@ -43,17 +44,15 @@ body {
     width: 400px;
     height: 450px;
     padding: 40px;
-    border: 2px solid black;
     border-radius: 10px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255, 0.35);
 }
 
 .fiveDayInfo {
     width: 1150px;
     padding: 40px;
-    border: 2px solid black;
     border-radius: 10px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255, 0.35);
 }
 
 .clear {
@@ -69,5 +68,5 @@ body {
 }
 
 .tempColor {
-    color: rgb(22, 166, 255);
+    color: #224377;
 }
